@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.TipoGastoController",
+    "Method": "CrearTipoGasto",
+    "RelativePath": "api/TipoGasto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ControlGastosBackend.DTOs.CreateTipoGastoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
