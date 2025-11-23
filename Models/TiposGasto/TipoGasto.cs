@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ControlGastosBackend.Models
+namespace ControlGastosBackend.Models.TiposGasto
 {
     [Table("TiposGasto")]
     public class TipoGasto

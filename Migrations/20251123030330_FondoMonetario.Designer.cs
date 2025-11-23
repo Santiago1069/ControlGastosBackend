@@ -4,6 +4,7 @@ using ControlGastosBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControlGastosBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251123030330_FondoMonetario")]
+    partial class FondoMonetario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,33 +51,6 @@ namespace ControlGastosBackend.Migrations
                     b.ToTable("FondosMonetarios");
                 });
 
-            modelBuilder.Entity("ControlGastosBackend.Models.Presupuesto.PresupuestoGasto", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AnioMes")
-                        .IsRequired()
-                        .HasMaxLength(7)
-                        .HasColumnType("nvarchar(7)");
-
-                    b.Property<decimal>("Monto")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("MontoEjecutado")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("TipoGastoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TipoGastoId");
-
-                    b.ToTable("PresupuestosGasto");
-                });
-
             modelBuilder.Entity("ControlGastosBackend.Models.TiposGasto.TipoGasto", b =>
                 {
                     b.Property<Guid>("Id")
@@ -101,17 +77,6 @@ namespace ControlGastosBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TiposGasto");
-                });
-
-            modelBuilder.Entity("ControlGastosBackend.Models.Presupuesto.PresupuestoGasto", b =>
-                {
-                    b.HasOne("ControlGastosBackend.Models.TiposGasto.TipoGasto", "TipoGasto")
-                        .WithMany()
-                        .HasForeignKey("TipoGastoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TipoGasto");
                 });
 #pragma warning restore 612, 618
         }

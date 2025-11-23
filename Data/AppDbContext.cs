@@ -1,5 +1,6 @@
-﻿
-using ControlGastosBackend.Models;
+﻿using ControlGastosBackend.Models.FondoMonetario;
+using ControlGastosBackend.Models.Presupuesto;
+using ControlGastosBackend.Models.TiposGasto;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControlGastosBackend.Data
@@ -11,5 +12,7 @@ namespace ControlGastosBackend.Data
         }
 
         public DbSet<TipoGasto> TiposGasto { get; set; }
+        public DbSet<FondosMonetario> FondoMonetario { get; set; }
+        public DbSet<PresupuestoGasto> PresupuestosGasto { get; set; }
     }
 }

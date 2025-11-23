@@ -129,6 +129,7 @@ C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\Contr
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\ControlGastosBackend.csproj.CoreCompileInputs.cache
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\ControlGastosBackend.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\ControlGastosBackend.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\ControlGastosBackend.sourcelink.json
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json

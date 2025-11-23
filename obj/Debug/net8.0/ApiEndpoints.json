@@ -1,6 +1,48 @@
 [
   {
-    "ContainingType": "ControlGastosBackend.Controllers.TipoGastoController",
+    "ContainingType": "ControlGastosBackend.Controllers.FondoMonetario.FondoMonetarioController",
+    "Method": "CrearFondo",
+    "RelativePath": "api/FondoMonetario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ControlGastosBackend.DTOs.FondoMonetario.CrearFondoMonetarioDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.FondoMonetario.FondoMonetarioController",
+    "Method": "ObtenerFondos",
+    "RelativePath": "api/FondoMonetario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.Presupuesto.PresupuestoGastoController",
+    "Method": "CrearPresupuesto",
+    "RelativePath": "api/PresupuestoGasto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ControlGastosBackend.DTOs.Presupuesto.PresupuestoGastoCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.TiposGasto.TipoGastoController",
     "Method": "CrearTipoGasto",
     "RelativePath": "api/TipoGasto",
     "HttpMethod": "POST",
@@ -9,10 +51,20 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "ControlGastosBackend.DTOs.CreateTipoGastoDto",
+        "Type": "ControlGastosBackend.DTOs.TiposGasto.CreateTipoGastoDto",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.TiposGasto.TipoGastoController",
+    "Method": "ObtenerTiposGasto",
+    "RelativePath": "api/TipoGasto",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

@@ -1,4 +1,4 @@
-﻿namespace ControlGastosBackend.DTOs
+﻿namespace ControlGastosBackend.DTOs.TiposGasto
 {
     public class CreateTipoGastoDto
     {

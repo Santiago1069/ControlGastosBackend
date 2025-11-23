@@ -1,17 +1,17 @@
 ﻿using ControlGastosBackend.Data;
-using ControlGastosBackend.DTOs;
-using ControlGastosBackend.Models;
-using ControlGastosBackend.Repositories;
+using ControlGastosBackend.DTOs.TiposGasto;
+using ControlGastosBackend.Models.TiposGasto;
+using ControlGastosBackend.Repositories.TiposGasto;
 
-namespace ControlGastosBackend.Services
+namespace ControlGastosBackend.Services.TiposGasto
 {
     public class TipoGastoService
     {
-        private readonly ITipoGastoRepository _repository;
+        private readonly TipoGastoRepository _repository;
         private readonly ILogger<TipoGastoService> _logger;
         private readonly AppDbContext _context;
 
-        public TipoGastoService(ITipoGastoRepository repository, ILogger<TipoGastoService> logger, AppDbContext context)
+        public TipoGastoService(TipoGastoRepository repository, ILogger<TipoGastoService> logger, AppDbContext context)
         {
             _repository = repository;
             _logger = logger;
@@ -49,6 +49,13 @@ namespace ControlGastosBackend.Services
                 Color = tipoGasto.Color
             };
         }
+
+        public async Task<List<TipoGasto>> ObtenerTodosAsync()
+        {
+            return await _repository.ObtenerTodos();
+        }
+
+
     }
 }
 
