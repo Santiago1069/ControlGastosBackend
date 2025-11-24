@@ -138,10 +138,10 @@ C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\stati
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\ControlG.28E214AA.Up2Date
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\ControlGastosBackend.dll
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\refint\ControlGastosBackend.dll
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\ControlGastosBackend.pdb
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\ControlGastosBackend.genruntimeconfig.cache
 C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\ref\ControlGastosBackend.dll
+C:\Users\Santiago Sandoval\Documents\ControlGastosBackend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

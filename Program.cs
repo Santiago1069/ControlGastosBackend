@@ -1,10 +1,12 @@
 ﻿using ControlGastosBackend.Data;
 using ControlGastosBackend.Repositories.FondoMonetario;
+using ControlGastosBackend.Repositories.Movimientos;
 using ControlGastosBackend.Repositories.Presupuesto;
 using ControlGastosBackend.Repositories.RegistroGastoDetalleRepository;
 using ControlGastosBackend.Repositories.RegistrosGasto;
 using ControlGastosBackend.Repositories.TiposGasto;
 using ControlGastosBackend.Services.FondoMonetario;
+using ControlGastosBackend.Services.Movimientos;
 using ControlGastosBackend.Services.Presupuesto;
 using ControlGastosBackend.Services.RegistroGasto;
 using ControlGastosBackend.Services.TiposGasto;
@@ -34,6 +36,8 @@ builder.Services.AddScoped<PresupuestoGastoService>();
 builder.Services.AddScoped<RegistroGastoRepository>();
 builder.Services.AddScoped<RegistroGastoService>();
 builder.Services.AddScoped<RegistroGastoDetalleRepository>();
+builder.Services.AddScoped<MovimientoRepository>();
+builder.Services.AddScoped<MovimientoService>();
 
 var app = builder.Build();
 

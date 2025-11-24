@@ -26,6 +26,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ControlGastosBackend.Controllers.Movimientos.MovimientoController",
+    "Method": "Crear",
+    "RelativePath": "api/Movimiento",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "movimiento",
+        "Type": "ControlGastosBackend.DTOs.Movimiento.CrearMovimientoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ControlGastosBackend.Controllers.Presupuesto.PresupuestoGastoController",
     "Method": "CrearPresupuesto",
     "RelativePath": "api/PresupuestoGasto",

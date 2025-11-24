@@ -1,10 +1,12 @@
 ﻿using ControlGastosBackend.Data;
 using ControlGastosBackend.DTOs.RegistrosGasto;
 using ControlGastosBackend.DTOs.TiposGasto;
+using ControlGastosBackend.Models.Movimiento;
 using ControlGastosBackend.Models.Presupuesto;
 using ControlGastosBackend.Models.RegistroGastoDetalle;
 using ControlGastosBackend.Models.RegistrosGasto;
 using ControlGastosBackend.Repositories.FondoMonetario;
+using ControlGastosBackend.Repositories.Movimientos;
 using ControlGastosBackend.Repositories.Presupuesto;
 using ControlGastosBackend.Repositories.RegistroGastoDetalleRepository;
 using ControlGastosBackend.Repositories.RegistrosGasto;
@@ -20,6 +22,7 @@ namespace ControlGastosBackend.Services.RegistroGasto
         private readonly RegistroGastoDetalleRepository _registroGastoDetalleRepository;
         private readonly FondoMonetarioRepository _fondoRepository;
         private readonly PresupuestoGastoRepository _presupuestoGastoRepository;
+        private readonly MovimientoRepository _movimientoRepository;
         private readonly AppDbContext _context;
         private readonly ILogger<TipoGastoService> _logger;
 
@@ -28,6 +31,7 @@ namespace ControlGastosBackend.Services.RegistroGasto
             RegistroGastoDetalleRepository registroGastoDetalleRepository,
             FondoMonetarioRepository fondoRepository,
             PresupuestoGastoRepository presupuestoGastoRepository,
+            MovimientoRepository movimientoRepository,
             AppDbContext context,
             ILogger<TipoGastoService> logger)
         {
@@ -35,6 +39,7 @@ namespace ControlGastosBackend.Services.RegistroGasto
             _registroGastoDetalleRepository = registroGastoDetalleRepository;
             _fondoRepository = fondoRepository;
             _presupuestoGastoRepository = presupuestoGastoRepository;
+            _movimientoRepository = movimientoRepository;
             _context = context;
             _logger = logger;
         }
@@ -81,8 +86,20 @@ namespace ControlGastosBackend.Services.RegistroGasto
                        detalle.Monto
                 );
 
+                await _fondoRepository.ActualizarSaldoAsync(fondo.Id, detalle.Monto);
+
+                await _movimientoRepository.CrearAsync(new Models.Movimiento.Movimiento
+                {
+                    Fecha = dto.Fecha,
+                    Descripcion = $"Gasto: {detalle.Descripcion}",
+                    Tipo = TipoMovimiento.Gasto,
+                    Monto = detalle.Monto
+                });
+
+
                 var presupuesto = await _presupuestoGastoRepository
                     .GetByIdAnioMesAsync(item.TipoGastoId, dto.Fecha.ToString("yyyy-MM"));
+
 
                 if (presupuesto == null)
                 {
@@ -130,7 +147,7 @@ namespace ControlGastosBackend.Services.RegistroGasto
                 FondoMonetarioId = registro.FondoMonetario.Id,
                 Observaciones = registro.Observaciones,
                 NombreComercio = registro.NombreComercio,
-                TipoDocumento = registro.TipoDocumento.ToString()
+                TipoDocumento = registro.TipoDocumento.ToString()                
             };
         }
 

@@ -34,5 +34,23 @@ namespace ControlGastosBackend.Repositories.FondoMonetario
             return await _context.FondoMonetario
                 .FirstOrDefaultAsync(f => f.Id == fondoMonetarioId);
         }
+
+        public async Task<bool> ActualizarSaldoAsync(Guid fondoId, decimal montoRestar)
+        {
+            var fondo = await _context.FondoMonetario
+                .FirstOrDefaultAsync(f => f.Id == fondoId);
+
+            if (fondo == null)
+                return false;
+
+            // Restamos el monto
+            fondo.SaldoActual -= montoRestar;
+
+            if (fondo.SaldoActual < 0)
+                fondo.SaldoActual = 0;
+
+            _context.FondoMonetario.Update(fondo);
+            return true;
+        }
     }
 }
