@@ -1,5 +1,6 @@
 ﻿using ControlGastosBackend.Data;
 using ControlGastosBackend.Models.Presupuesto;
+using Microsoft.EntityFrameworkCore;
 
 namespace ControlGastosBackend.Repositories.Presupuesto
 {
@@ -16,5 +17,28 @@ namespace ControlGastosBackend.Repositories.Presupuesto
         {
             await _context.PresupuestosGasto.AddAsync(presupuesto);
         }
+
+        public async Task<PresupuestoGasto?> GetByIdAnioMesAsync(Guid id, string anioMes)
+        {
+            return await _context.PresupuestosGasto
+                .Include(p => p.TipoGasto)
+                .FirstOrDefaultAsync(p => p.TipoGastoId == id && p.AnioMes == anioMes);
+        }
+
+        public async Task<bool> ActualizarMontoEjecutadoAsync(Guid tipoGastoId, string anioMes, decimal monto)
+        {
+            var presupuesto = await _context.PresupuestosGasto
+                .FirstOrDefaultAsync(p => p.TipoGastoId == tipoGastoId && p.AnioMes == anioMes);
+
+            if (presupuesto == null)
+                return false;
+
+            presupuesto.MontoEjecutado += monto;
+
+            _context.PresupuestosGasto.Update(presupuesto);
+            return true;
+        }
+
+
     }
 }

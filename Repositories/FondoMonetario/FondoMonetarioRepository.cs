@@ -2,7 +2,6 @@
 using ControlGastosBackend.Models.FondoMonetario;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace ControlGastosBackend.Repositories.FondoMonetario
 {
     public class FondoMonetarioRepository
@@ -28,6 +27,12 @@ namespace ControlGastosBackend.Repositories.FondoMonetario
         public async Task<List<FondosMonetario>> GetAllFondos()
         {
             return await _context.FondoMonetario.ToListAsync();
+        }
+
+        public async Task<FondosMonetario> ObtenerPorIdAsync(Guid fondoMonetarioId)
+        {
+            return await _context.FondoMonetario
+                .FirstOrDefaultAsync(f => f.Id == fondoMonetarioId);
         }
     }
 }

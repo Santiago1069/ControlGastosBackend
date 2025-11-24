@@ -8,7 +8,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dto",
+        "Name": "crearFondoMonetarioDTO",
         "Type": "ControlGastosBackend.DTOs.FondoMonetario.CrearFondoMonetarioDTO",
         "IsRequired": true
       }
@@ -34,8 +34,71 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dto",
+        "Name": "presupuestoGastoCreateDto",
         "Type": "ControlGastosBackend.DTOs.Presupuesto.PresupuestoGastoCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.Presupuesto.PresupuestoGastoController",
+    "Method": "GetPresupuesto",
+    "RelativePath": "api/PresupuestoGasto/{id}/anioMes/{anioMes}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "anioMes",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.RegistroGasto.RegistroGastoController",
+    "Method": "CrearRegistroGasto",
+    "RelativePath": "api/RegistroGasto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ControlGastosBackend.DTOs.RegistrosGasto.RegistroGastoCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.RegistroGasto.RegistroGastoController",
+    "Method": "ObtenerTodos",
+    "RelativePath": "api/RegistroGasto",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.RegistroGasto.RegistroGastoController",
+    "Method": "ObtenerPorId",
+    "RelativePath": "api/RegistroGasto/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],
@@ -50,7 +113,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dto",
+        "Name": "createTipoGastoDto",
         "Type": "ControlGastosBackend.DTOs.TiposGasto.CreateTipoGastoDto",
         "IsRequired": true
       }

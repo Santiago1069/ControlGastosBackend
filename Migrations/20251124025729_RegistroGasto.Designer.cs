@@ -4,6 +4,7 @@ using ControlGastosBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControlGastosBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251124025729_RegistroGasto")]
+    partial class RegistroGasto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,34 +76,6 @@ namespace ControlGastosBackend.Migrations
                     b.HasIndex("TipoGastoId");
 
                     b.ToTable("PresupuestosGasto");
-                });
-
-            modelBuilder.Entity("ControlGastosBackend.Models.RegistroGastoDetalle.RegistroGastoDetalle", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Descripcion")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<decimal>("Monto")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("RegistroGastoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TipoGastoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RegistroGastoId");
-
-                    b.HasIndex("TipoGastoId");
-
-                    b.ToTable("RegistroGastoDetalle");
                 });
 
             modelBuilder.Entity("ControlGastosBackend.Models.RegistrosGasto.RegistroGasto", b =>
@@ -169,25 +144,6 @@ namespace ControlGastosBackend.Migrations
                         .HasForeignKey("TipoGastoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("TipoGasto");
-                });
-
-            modelBuilder.Entity("ControlGastosBackend.Models.RegistroGastoDetalle.RegistroGastoDetalle", b =>
-                {
-                    b.HasOne("ControlGastosBackend.Models.RegistrosGasto.RegistroGasto", "RegistroGasto")
-                        .WithMany()
-                        .HasForeignKey("RegistroGastoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ControlGastosBackend.Models.TiposGasto.TipoGasto", "TipoGasto")
-                        .WithMany()
-                        .HasForeignKey("TipoGastoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RegistroGasto");
 
                     b.Navigation("TipoGasto");
                 });

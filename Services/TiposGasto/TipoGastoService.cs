@@ -50,10 +50,20 @@ namespace ControlGastosBackend.Services.TiposGasto
             };
         }
 
-        public async Task<List<TipoGasto>> ObtenerTodosAsync()
+        public async Task<List<TipoGastoResponseDto>> ObtenerTodosAsync()
         {
-            return await _repository.ObtenerTodos();
+            var tipos = await _repository.ObtenerTodos();
+
+            return tipos.Select(t => new TipoGastoResponseDto
+            {
+                Id = t.Id,
+                Nombre = t.Nombre,
+                Descripcion = t.Descripcion,
+                Estado = t.Estado.ToString(),
+                Color = t.Color
+            }).ToList();
         }
+
 
 
     }

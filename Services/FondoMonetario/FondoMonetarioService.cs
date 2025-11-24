@@ -17,7 +17,7 @@ namespace ControlGastosBackend.Services.FondoMonetario
             _context = context;
         }
 
-        public async Task<FondosMonetario> CrearAsync(CrearFondoMonetarioDTO crearFondoMonetarioDTO)
+        public async Task<FondoMonetarioResponseDTO> CrearAsync(CrearFondoMonetarioDTO crearFondoMonetarioDTO)
         {
             if (await _fondoMonetarioRepository.ExisteNombreAsync(crearFondoMonetarioDTO.Nombre))
             {
@@ -35,13 +35,30 @@ namespace ControlGastosBackend.Services.FondoMonetario
             await _fondoMonetarioRepository.CrearAsync(nuevoFondo);
             await _context.SaveChangesAsync();
 
-            return nuevoFondo;
-
+            return new FondoMonetarioResponseDTO
+            {
+                Id = nuevoFondo.Id,
+                Nombre = nuevoFondo.Nombre,
+                Descripcion = nuevoFondo.Descripcion,
+                Tipo = nuevoFondo.Tipo.ToString(),
+                SaldoActual = nuevoFondo.SaldoActual
+            };
         }
 
-        public async Task<List<FondosMonetario>> ObtenerFondos()
+
+        public async Task<List<FondoMonetarioResponseDTO>> ObtenerFondos()
         {
-            return await _fondoMonetarioRepository.GetAllFondos();
+            var fondos = await _fondoMonetarioRepository.GetAllFondos();
+
+            return fondos.Select(f => new FondoMonetarioResponseDTO
+            {
+                Id = f.Id,
+                Nombre = f.Nombre,
+                Descripcion = f.Descripcion,
+                Tipo = f.Tipo.ToString(),
+                SaldoActual = f.SaldoActual
+            }).ToList();
         }
+
     }
 }

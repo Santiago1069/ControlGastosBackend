@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ControlGastosBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40d2212169013a9e2aa7459ab86e4b26dd2d1b22")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+066cb387f8b0124a8e28738ceb7d414251185f0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ControlGastosBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ControlGastosBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

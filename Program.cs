@@ -1,9 +1,12 @@
 ﻿using ControlGastosBackend.Data;
 using ControlGastosBackend.Repositories.FondoMonetario;
 using ControlGastosBackend.Repositories.Presupuesto;
+using ControlGastosBackend.Repositories.RegistroGastoDetalleRepository;
+using ControlGastosBackend.Repositories.RegistrosGasto;
 using ControlGastosBackend.Repositories.TiposGasto;
 using ControlGastosBackend.Services.FondoMonetario;
 using ControlGastosBackend.Services.Presupuesto;
+using ControlGastosBackend.Services.RegistroGasto;
 using ControlGastosBackend.Services.TiposGasto;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +31,9 @@ builder.Services.AddScoped<FondoMonetarioRepository>();
 builder.Services.AddScoped<FondoMonetarioService>();
 builder.Services.AddScoped<PresupuestoGastoRepository>();
 builder.Services.AddScoped<PresupuestoGastoService>();
+builder.Services.AddScoped<RegistroGastoRepository>();
+builder.Services.AddScoped<RegistroGastoService>();
+builder.Services.AddScoped<RegistroGastoDetalleRepository>();
 
 var app = builder.Build();
 

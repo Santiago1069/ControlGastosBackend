@@ -28,5 +28,16 @@ namespace ControlGastosBackend.Controllers.Presupuesto
                 return BadRequest(new { error = ex.Message });
             }
         }
+
+        [HttpGet("{id}/anioMes/{anioMes}")]
+        public async Task<IActionResult> GetPresupuesto(Guid id, string anioMes)
+        {
+            var result = await _presupuestoGastoService.GetByIdAsync(id, anioMes);
+
+            if (result == null)
+                return NotFound(new { message = "Presupuesto no encontrado" });
+
+            return Ok(result);
+        }
     }
 }

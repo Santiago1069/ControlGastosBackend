@@ -18,7 +18,7 @@ namespace ControlGastosBackend.Services.Presupuesto
         }
 
 
-        public async Task<PresupuestoGasto> CreateAsync(PresupuestoGastoCreateDto presupuestoGastoCreateDto)
+        public async Task<PresupuestoGastoResponseDto> CreateAsync(PresupuestoGastoCreateDto presupuestoGastoCreateDto)
         {
             var presupuestoGasto = new PresupuestoGasto
             {
@@ -31,8 +31,36 @@ namespace ControlGastosBackend.Services.Presupuesto
             await _presupuestoGastoRepository.CreateAsync(presupuestoGasto);
             await _context.SaveChangesAsync();
 
-            return presupuestoGasto;
+            var tipoGasto = await _context.TiposGasto.FindAsync(presupuestoGasto.TipoGastoId);
 
+            return new PresupuestoGastoResponseDto
+            {
+                Id = presupuestoGasto.Id,
+                TipoGastoId = presupuestoGasto.TipoGastoId,
+                TipoGastoNombre = tipoGasto?.Nombre ?? "N/A",
+                Monto = presupuestoGasto.Monto,
+                MontoEjecutado = presupuestoGasto.MontoEjecutado,
+                AnioMes = presupuestoGasto.AnioMes
+            };
         }
+
+        public async Task<PresupuestoGastoResponseDto?> GetByIdAsync(Guid id, string anioMes)
+        {
+            var presupuesto = await _presupuestoGastoRepository.GetByIdAnioMesAsync(id, anioMes);
+
+            if (presupuesto == null)
+                return null;
+
+            return new PresupuestoGastoResponseDto
+            {
+                Id = presupuesto.Id,
+                TipoGastoId = presupuesto.TipoGastoId,
+                TipoGastoNombre = presupuesto.TipoGasto?.Nombre ?? "N/A",
+                Monto = presupuesto.Monto,
+                MontoEjecutado = presupuesto.MontoEjecutado,
+                AnioMes = presupuesto.AnioMes
+            };
+        }
+
     }
 }
