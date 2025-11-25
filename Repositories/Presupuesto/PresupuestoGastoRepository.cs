@@ -39,6 +39,21 @@ namespace ControlGastosBackend.Repositories.Presupuesto
             return true;
         }
 
+        public async Task<List<PresupuestoGasto>> GetAllAsync()
+        {
+            return await _context.PresupuestosGasto
+                .Include(p => p.TipoGasto)
+                .ToListAsync();
+        }
+
+        public async Task<PresupuestoGasto?> GetByIdAsync(Guid id)
+        {
+            return await _context.PresupuestosGasto
+                .Include(p => p.TipoGasto)
+                .FirstOrDefaultAsync(p => p.TipoGastoId == id);
+        }
+
+
 
     }
 }

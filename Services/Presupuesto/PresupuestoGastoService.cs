@@ -62,5 +62,35 @@ namespace ControlGastosBackend.Services.Presupuesto
             };
         }
 
+        public async Task<List<PresupuestoGastoResponseDto>> GetAllAsync()
+        {
+            var presupuestos = await _presupuestoGastoRepository.GetAllAsync();
+            return presupuestos.Select(p => new PresupuestoGastoResponseDto
+            {
+                Id = p.Id,
+                TipoGastoId = p.TipoGastoId,
+                TipoGastoNombre = p.TipoGasto?.Nombre ?? "N/A",
+                Monto = p.Monto,
+                MontoEjecutado = p.MontoEjecutado,
+                AnioMes = p.AnioMes
+            }).ToList();
+        }
+
+        public async Task<PresupuestoGastoResponseDto?> GetByIdAsync(Guid id)
+        {
+            var presupuesto = await _presupuestoGastoRepository.GetByIdAsync(id);
+            if (presupuesto == null)
+                return null;
+            return new PresupuestoGastoResponseDto
+            {
+                Id = presupuesto.Id,
+                TipoGastoId = presupuesto.TipoGastoId,
+                TipoGastoNombre = presupuesto.TipoGasto?.Nombre ?? "N/A",
+                Monto = presupuesto.Monto,
+                MontoEjecutado = presupuesto.MontoEjecutado,
+                AnioMes = presupuesto.AnioMes
+            };
+        }
+
     }
 }

@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "ControlGastosBackend.Controllers.Depositos.DepositoController",
+    "Method": "CrearDeposito",
+    "RelativePath": "api/Deposito",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "deposito",
+        "Type": "ControlGastosBackend.DTOs.Deposito.CrearDepositoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.Depositos.DepositoController",
+    "Method": "ObtenerDepositos",
+    "RelativePath": "api/Deposito",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ControlGastosBackend.Controllers.FondoMonetario.FondoMonetarioController",
     "Method": "CrearFondo",
     "RelativePath": "api/FondoMonetario",
@@ -23,6 +49,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.FondoMonetario.FondoMonetarioController",
+    "Method": "ObtenerFondoPorId",
+    "RelativePath": "api/FondoMonetario/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -52,6 +94,32 @@
       {
         "Name": "presupuestoGastoCreateDto",
         "Type": "ControlGastosBackend.DTOs.Presupuesto.PresupuestoGastoCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.Presupuesto.PresupuestoGastoController",
+    "Method": "GetAllPresupuestos",
+    "RelativePath": "api/PresupuestoGasto",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.Presupuesto.PresupuestoGastoController",
+    "Method": "GetPresupuestoById",
+    "RelativePath": "api/PresupuestoGasto/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],
@@ -144,6 +212,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlGastosBackend.Controllers.TiposGasto.TipoGastoController",
+    "Method": "ObtenerTipoGastoPorId",
+    "RelativePath": "api/TipoGasto/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]

@@ -29,5 +29,11 @@ namespace ControlGastosBackend.Repositories.TiposGasto
         {
             return await _context.TiposGasto.ToListAsync();
         }
+
+        public async Task<TipoGasto?> ObtenerPorIdAsync(Guid tipoGastoId)
+        {
+            return await _context.TiposGasto
+                .FirstOrDefaultAsync(t => t.Id == tipoGastoId);
+        }
     }
 }

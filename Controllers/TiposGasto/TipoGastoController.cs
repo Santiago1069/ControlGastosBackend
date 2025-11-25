@@ -36,5 +36,14 @@ namespace ControlGastosBackend.Controllers.TiposGasto
             var response = await _tipoGastoService.ObtenerTodosAsync();
             return Ok(response);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObtenerTipoGastoPorId(Guid id)
+        {
+            var response = await _tipoGastoService.ObtenerPorIdAsync(id);
+            if (response == null)
+                return NotFound(new { message = "Tipo de gasto no encontrado" });
+            return Ok(response);
+        }
     }
 }

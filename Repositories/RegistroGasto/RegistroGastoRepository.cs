@@ -1,4 +1,5 @@
 ﻿using ControlGastosBackend.Data;
+using ControlGastosBackend.DTOs.RegistrosGasto;
 using ControlGastosBackend.Models.RegistrosGasto;
 using Microsoft.EntityFrameworkCore;
 

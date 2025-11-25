@@ -1,4 +1,5 @@
-﻿using ControlGastosBackend.Models.FondoMonetario;
+﻿using ControlGastosBackend.Models.Deposito;
+using ControlGastosBackend.Models.FondoMonetario;
 using ControlGastosBackend.Models.Movimiento;
 using ControlGastosBackend.Models.Presupuesto;
 using ControlGastosBackend.Models.RegistroGastoDetalle;
@@ -20,8 +21,7 @@ namespace ControlGastosBackend.Data
         public DbSet<RegistroGasto> RegistroGasto { get; set; }
         public DbSet<RegistroGastoDetalle> RegistroGastoDetalle { get; set; }
         public DbSet<Movimiento> Movimiento { get; set; }
-
-
+        public DbSet<Deposito> Deposito { get; set; }
 
     }
 }

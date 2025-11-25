@@ -60,5 +60,20 @@ namespace ControlGastosBackend.Services.FondoMonetario
             }).ToList();
         }
 
+        public async Task<FondoMonetarioResponseDTO> FondoMonetarioById(Guid fondoId)
+        {
+            var fondo = await _fondoMonetarioRepository.ObtenerPorIdAsync(fondoId);
+            if (fondo == null)
+                throw new Exception("Fondo monetario no encontrado.");
+            return new FondoMonetarioResponseDTO
+            {
+                Id = fondo.Id,
+                Nombre = fondo.Nombre,
+                Descripcion = fondo.Descripcion,
+                Tipo = fondo.Tipo.ToString(),
+                SaldoActual = fondo.SaldoActual
+            };
+        }
+
     }
 }

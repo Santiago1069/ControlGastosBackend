@@ -36,5 +36,14 @@ namespace ControlGastosBackend.Controllers.FondoMonetario
             var fondos = await _fondoMonetarioService.ObtenerFondos();
             return Ok(fondos);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObtenerFondoPorId(Guid id)
+        {
+            var fondo = await _fondoMonetarioService.FondoMonetarioById(id);
+            if (fondo == null)
+                return NotFound(new { message = "Fondo monetario no encontrado" });
+            return Ok(fondo);
+        }
     }
 }

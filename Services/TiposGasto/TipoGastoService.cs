@@ -64,6 +64,21 @@ namespace ControlGastosBackend.Services.TiposGasto
             }).ToList();
         }
 
+        public async Task<TipoGastoResponseDto?> ObtenerPorIdAsync(Guid tipoGastoId)
+        {
+            var tipo = await _repository.ObtenerPorIdAsync(tipoGastoId);
+            if (tipo == null)
+                return null;
+            return new TipoGastoResponseDto
+            {
+                Id = tipo.Id,
+                Nombre = tipo.Nombre,
+                Descripcion = tipo.Descripcion,
+                Estado = tipo.Estado.ToString(),
+                Color = tipo.Color
+            };
+        }
+
 
 
     }

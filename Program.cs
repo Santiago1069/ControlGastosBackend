@@ -1,10 +1,12 @@
 ﻿using ControlGastosBackend.Data;
+using ControlGastosBackend.Repositories.Depositos;
 using ControlGastosBackend.Repositories.FondoMonetario;
 using ControlGastosBackend.Repositories.Movimientos;
 using ControlGastosBackend.Repositories.Presupuesto;
 using ControlGastosBackend.Repositories.RegistroGastoDetalleRepository;
 using ControlGastosBackend.Repositories.RegistrosGasto;
 using ControlGastosBackend.Repositories.TiposGasto;
+using ControlGastosBackend.Services.Depositos;
 using ControlGastosBackend.Services.FondoMonetario;
 using ControlGastosBackend.Services.Movimientos;
 using ControlGastosBackend.Services.Presupuesto;
@@ -13,6 +15,21 @@ using ControlGastosBackend.Services.TiposGasto;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();
+        });
+});
+
+builder.Services.AddControllers();
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -38,8 +55,12 @@ builder.Services.AddScoped<RegistroGastoService>();
 builder.Services.AddScoped<RegistroGastoDetalleRepository>();
 builder.Services.AddScoped<MovimientoRepository>();
 builder.Services.AddScoped<MovimientoService>();
+builder.Services.AddScoped<DepositoRepository>();
+builder.Services.AddScoped<DepositoService>();
 
 var app = builder.Build();
+
+app.UseCors("AllowAngular");
 
 // Configure pipeline
 if (app.Environment.IsDevelopment())

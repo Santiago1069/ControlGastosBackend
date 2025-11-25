@@ -52,5 +52,20 @@ namespace ControlGastosBackend.Repositories.FondoMonetario
             _context.FondoMonetario.Update(fondo);
             return true;
         }
+
+        public async Task<bool> SumarSaldoActual(Guid fondoId, decimal montoAgregado)
+        {
+            var fondo = await _context.FondoMonetario
+                .FirstOrDefaultAsync(f => f.Id == fondoId);
+
+            if (fondo == null)
+                return false;
+
+            // Sumamos el monto
+            fondo.SaldoActual += montoAgregado;
+
+            _context.FondoMonetario.Update(fondo);
+            return true;
+        }
     }
 }

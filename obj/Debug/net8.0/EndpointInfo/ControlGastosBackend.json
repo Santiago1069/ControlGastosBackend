@@ -5,6 +5,47 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Deposito": {
+      "post": {
+        "tags": [
+          "Deposito"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearDepositoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearDepositoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearDepositoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Deposito"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/FondoMonetario": {
       "post": {
         "tags": [
@@ -38,6 +79,29 @@
       "get": {
         "tags": [
           "FondoMonetario"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/FondoMonetario/{id}": {
+      "get": {
+        "tags": [
+          "FondoMonetario"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -106,6 +170,16 @@
             "description": "OK"
           }
         }
+      },
+      "get": {
+        "tags": [
+          "PresupuestoGasto"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/PresupuestoGasto/{id}/anioMes/{anioMes}": {
@@ -129,6 +203,29 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PresupuestoGasto/{id}": {
+      "get": {
+        "tags": [
+          "PresupuestoGasto"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -243,10 +340,55 @@
           }
         }
       }
+    },
+    "/api/TipoGasto/{id}": {
+      "get": {
+        "tags": [
+          "TipoGasto"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "CrearDepositoDTO": {
+        "type": "object",
+        "properties": {
+          "fecha": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fondoMonetarioId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "monto": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
       "CrearFondoMonetarioDTO": {
         "type": "object",
         "properties": {
