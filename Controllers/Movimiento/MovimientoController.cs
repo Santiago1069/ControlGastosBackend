@@ -28,5 +28,12 @@ namespace ControlGastosBackend.Controllers.Movimientos
                 return BadRequest(new { error = ex.Message });
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ObtenerTodos()
+        {
+            var movimientos = await _service.ObtenerTodosAsync();
+            return Ok(movimientos);
+        }
     }
 }

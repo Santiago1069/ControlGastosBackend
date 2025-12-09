@@ -3,6 +3,7 @@ using ControlGastosBackend.DTOs.Deposito;
 using ControlGastosBackend.Models.Deposito;
 using ControlGastosBackend.Repositories.Depositos;
 using ControlGastosBackend.Repositories.FondoMonetario;
+using ControlGastosBackend.Repositories.Movimientos;
 
 namespace ControlGastosBackend.Services.Depositos
 {
@@ -10,15 +11,18 @@ namespace ControlGastosBackend.Services.Depositos
     {
         private readonly DepositoRepository _depositoRepository;
         private readonly FondoMonetarioRepository _fondoRepository;
+        private readonly MovimientoRepository _movimientoRepository;
         private readonly AppDbContext _context;
 
         public DepositoService(
             DepositoRepository depositoRepository,
             FondoMonetarioRepository fondoRepository,
+            MovimientoRepository movimientoRepository,
             AppDbContext context)
         {
             _depositoRepository = depositoRepository;
             _fondoRepository = fondoRepository;
+            _movimientoRepository = movimientoRepository;
             _context = context;
         }
 
@@ -41,8 +45,17 @@ namespace ControlGastosBackend.Services.Depositos
                 Monto = dto.Monto
             };
 
+            var movimiento = new Models.Movimiento.Movimiento
+            {
+                Fecha = dto.Fecha,
+                Tipo = Models.Movimiento.TipoMovimiento.Deposito,
+                Monto = dto.Monto,
+                Descripcion = dto.Descripcion
+            };
+
             await _fondoRepository.SumarSaldoActual(dto.FondoMonetarioId, dto.Monto);
             await _depositoRepository.CrearAsync(deposito);
+            await _movimientoRepository.CrearAsync(movimiento);
             await _context.SaveChangesAsync();
 
             // Retornar DTO

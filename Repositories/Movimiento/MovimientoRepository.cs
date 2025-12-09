@@ -1,5 +1,6 @@
 ﻿using ControlGastosBackend.Data;
 using ControlGastosBackend.Models.Movimiento;
+using Microsoft.EntityFrameworkCore;
 
 namespace ControlGastosBackend.Repositories.Movimientos
 {
@@ -15,6 +16,11 @@ namespace ControlGastosBackend.Repositories.Movimientos
         public async Task CrearAsync(Movimiento movimiento)
         {
             await _context.Movimiento.AddAsync(movimiento);
+        }
+
+        public async Task<List<Movimiento>> ObtenerTodosAsync()
+        {
+            return await _context.Movimiento.ToListAsync();
         }
     }
 }

@@ -25,5 +25,12 @@ namespace ControlGastosBackend.Repositories.RegistroGastoDetalleRepository
                 .Include(p => p.TipoGasto)
                 .FirstOrDefaultAsync(p => p.Id == id && p.AnioMes == anioMes);
         }
+
+        public async Task<List<RegistroGastoDetalle>> GetDetallesByIdAsync(Guid registroGastoId)
+        {
+            return await _context.RegistroGastoDetalle
+                .Where(d => d.RegistroGastoId == registroGastoId)
+                .ToListAsync();
+        }
     }
 }

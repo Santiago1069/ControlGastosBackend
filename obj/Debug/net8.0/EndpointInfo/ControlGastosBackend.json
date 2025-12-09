@@ -139,6 +139,16 @@
             "description": "OK"
           }
         }
+      },
+      "get": {
+        "tags": [
+          "Movimiento"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/PresupuestoGasto": {

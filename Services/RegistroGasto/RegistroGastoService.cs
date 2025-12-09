@@ -1,4 +1,5 @@
 ﻿using ControlGastosBackend.Data;
+using ControlGastosBackend.DTOs.RegistroGastoDetalle;
 using ControlGastosBackend.DTOs.RegistrosGasto;
 using ControlGastosBackend.DTOs.TiposGasto;
 using ControlGastosBackend.Models.Movimiento;
@@ -91,7 +92,7 @@ namespace ControlGastosBackend.Services.RegistroGasto
                 await _movimientoRepository.CrearAsync(new Models.Movimiento.Movimiento
                 {
                     Fecha = dto.Fecha,
-                    Descripcion = $"Gasto: {detalle.Descripcion}",
+                    Descripcion = detalle.Descripcion,
                     Tipo = TipoMovimiento.Gasto,
                     Monto = detalle.Monto
                 });
@@ -133,6 +134,7 @@ namespace ControlGastosBackend.Services.RegistroGasto
 
         public async Task<RegistroGastoResponseDto?> ObtenerPorIdAsync(Guid id)
         {
+            // 1. Obtener el registro principal
             var registro = await _context.RegistroGasto
                 .Include(r => r.FondoMonetario)
                 .FirstOrDefaultAsync(r => r.Id == id);
@@ -140,33 +142,67 @@ namespace ControlGastosBackend.Services.RegistroGasto
             if (registro == null)
                 return null;
 
-            return new RegistroGastoResponseDto
+            // 2. Obtener los detalles asociados al registro
+            var detalles = await _registroGastoDetalleRepository.GetDetallesByIdAsync(registro.Id);
+
+            // 3. Mapear la respuesta con la misma estructura de ObtenerTodosAsync
+            var respuesta = new RegistroGastoResponseDto
             {
                 Id = registro.Id,
+                FondoMonetarioId = registro.FondoMonetarioId,
                 Fecha = registro.Fecha,
-                FondoMonetarioId = registro.FondoMonetario.Id,
                 Observaciones = registro.Observaciones,
                 NombreComercio = registro.NombreComercio,
-                TipoDocumento = registro.TipoDocumento.ToString()                
+                TipoDocumento = registro.TipoDocumento.ToString(),
+
+                Detalles = detalles
+                    .Select(d => new RegistroGastoDetalleCreateDto
+                    {
+                        TipoGastoId = d.TipoGastoId,
+                        Monto = d.Monto,
+                        Descripcion = d.Descripcion
+                    })
+                    .ToList()
             };
+
+            return respuesta;
         }
+
 
         public async Task<List<RegistroGastoResponseDto>> ObtenerTodosAsync()
         {
-            return await _context.RegistroGasto
+            var gastos = await _context.RegistroGasto
                 .Include(r => r.FondoMonetario)
                 .OrderByDescending(r => r.Fecha)
-                .Select(r => new RegistroGastoResponseDto
+                .ToListAsync();
+
+            var respuesta = new List<RegistroGastoResponseDto>();
+            foreach (var r in gastos)
+            {
+                var detalles = await _registroGastoDetalleRepository.GetDetallesByIdAsync(r.Id);
+
+                respuesta.Add(new RegistroGastoResponseDto
                 {
                     Id = r.Id,
-                    FondoMonetarioId = r.Id,
+                    FondoMonetarioId = r.FondoMonetarioId,
                     Fecha = r.Fecha,
                     Observaciones = r.Observaciones,
                     NombreComercio = r.NombreComercio,
-                    TipoDocumento = r.TipoDocumento.ToString()
-                })
-                .ToListAsync();
+                    TipoDocumento = r.TipoDocumento.ToString(),
+                    Detalles = detalles
+                        .Select(d => new RegistroGastoDetalleCreateDto
+                        {
+                            TipoGastoId = d.TipoGastoId,
+                            Monto = d.Monto,
+                            Descripcion = d.Descripcion
+                        })
+                        .ToList()
+                });
+            }
+
+            return respuesta;
         }
+
 
     }
 }

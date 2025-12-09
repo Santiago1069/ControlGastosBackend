@@ -84,6 +84,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ControlGastosBackend.Controllers.Movimientos.MovimientoController",
+    "Method": "ObtenerTodos",
+    "RelativePath": "api/Movimiento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ControlGastosBackend.Controllers.Presupuesto.PresupuestoGastoController",
     "Method": "CrearPresupuesto",
     "RelativePath": "api/PresupuestoGasto",

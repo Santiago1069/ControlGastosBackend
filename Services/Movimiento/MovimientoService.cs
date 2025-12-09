@@ -37,7 +37,9 @@ namespace ControlGastosBackend.Services.Movimientos
             return movimiento;
         }
 
-
-
+        public async Task<List<Movimiento>> ObtenerTodosAsync()
+        {
+            return await _repository.ObtenerTodosAsync();
+        }
     }
 }
